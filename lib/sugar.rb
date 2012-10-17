@@ -53,7 +53,10 @@ module Sugar
     end
 
     def redis_prefix
-      @redis_prefix ||= 'sugar'
+      unless @redis_prefix
+        raise "Sugar.redis_prefix has not been configured! Check that you've set up config/initializers/sugar.rb."
+      end
+      @redis_prefix
     end
 
     def load_config!
@@ -66,6 +69,10 @@ module Sugar
 
     def save_config!
       Sugar.redis.set("#{Sugar.redis_prefix}:configuration", @config.to_json)
+    end
+
+    def reset_config!
+      update_configuration(DEFAULT_CONFIGURATION)
     end
 
     def config(key=nil, value=nil)

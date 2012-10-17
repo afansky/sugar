@@ -1,9 +1,9 @@
-= Sugar
+# Sugar [![Build Status](https://travis-ci.org/elektronaut/sugar.png)](https://travis-ci.org/elektronaut/sugar)
 
 Sugar is a free, open-source forum optimized for performance and usability, written in Ruby on Rails.
 
 
-== Features
+## Features
 
 Sugar aims for simplicity, and is first and foremost built for performance, especially with a high volume of posts. There's a few interesting bullet points, though:
 
@@ -27,38 +27,52 @@ Things you *WON'T* find in Sugar:
 * Emoticons and signatures
 
 
-== Requirements, and how to install them
+## Requirements, and how to install them
 
-Sugar is written for Ruby on Rails 3.1, and is Ruby 1.9 ready.
+Sugar is built using Ruby on Rails 3.2, and requires Ruby 1.9.
 
-You'll need to have a database set up. Sugar was developed against MySQL. PostgreSQL and SQLite hasn't been tested, but should work. Edit the Gemfile to reflect your DBM of choise.
+You'll need to have a database set up. Sugar was developed against MySQL. PostgreSQL and SQLite hasn't been tested, but should work. Edit the Gemfile to reflect your DBM of choice.
+
+You'll also need Redis installed. Sugar connects to localhost by default, which should be fine in most cases.
 
 Finally, install Bundler (if you haven't) and use it to install the rest of the required gems:
 
- gem install bundler
- bundle install
+```
+gem install bundler
+bundle install
+```
 
+## Installation
 
-== Installation
+Copy the sample configuration files, then edit them.
 
-Copy database.yml.dist to database.yml in the config directory, then edit it and fill in your database name, username and password. Next, create and migrate the database:
+```
+cp config/database.yml.dist config/database.yml
+cp config/initializers/sugar.rb.dist config/initializers/sugar.rb
+```
 
- sudo rake db:create
- sudo rake db:migrate
+Next, create and migrate the database:
+
+```
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
 
 You're now ready to start the development server:
 
- rails server
+```
+bundle exec rails server
+```
 
 
-== Credits
+## Credits
 
-Although it's written from scratch, the look and feel of Sugar was inspired by Vanilla, an open-source forum by Lussumo. Thanks to the members of the B3S community for feedback, ideas and encouragement, names far too many to be mentioned. Napkin was written by Branden Hall of Automata Studios (http://automatastudios.com).
+Although it's written from scratch, the look and feel of Sugar was inspired by Vanilla, an open-source forum by Lussumo. Thanks to the members of the B3S community for feedback, ideas and encouragement, names far too many to be mentioned. Napkin was written by Branden Hall of [Automata Studios](http://automatastudios.com/).
 
 The name? It's what Butterscotch is made of, and it's totally sweet.
 
 
-== License
+## License
 
 Copyright (c) 2008 Inge Jørgensen
 
